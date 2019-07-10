@@ -1,0 +1,25 @@
+.property_list{
+    width: 70ww;
+    margin: 0 auto;
+    padding:2rem;
+}
+@media screen and (min-width:768px){
+    .property_list{
+        display: grid;
+        grid-template-columns: 1ftr 1ftr;
+        grid-column-gap: 1.5rem;
+    }
+}
+@media screen and (min-width:992px){
+    .property_list{
+        width: 85ww;
+        grid-template-columns: repeat(3, 1ftr);
+        grid-column-gap: 1.5rem;
+    }
+}
+@media screen and (min-width:1140px){
+    .property_list{
+        grid-template-columns: repeat(4, 1ftr);
+        grid-column-gap: 1.5rem;
+    }
+}

@@ -1,0 +1,110 @@
+body{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+}
+/* .directors{
+    margin: 0 auto 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-gap: 10px;
+} */
+.directors .card{
+    position: relative;
+    /* width: 350px; */
+    margin: 0 auto;
+    /* background: #fcfafa; */
+    /* padding: 20px; */
+    box-sizing: border-box;
+    text-align: center;
+    /* box-shadow: 0px 10px 40px rgba(0,0,0,0.5); */
+    /* color: #fff; */
+    overflow: hidden;
+}
+.directors .card .layer{
+    position: absolute;
+    top: calc(100% - 2px);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(#707172, #d6d7dd);
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+}
+.directors .card .content {
+    position:relative;
+    z-index: 2;
+}
+.directors .card:hover .layer{
+    top: 0;
+}
+.directors .card .content p{
+    color: #fff;
+    line-height: 24px;
+    font-size: 18px;
+}
+.directors .card .content .image{
+    /* width: 200px;
+    height: 200px; */
+    margin: 0 auto;
+    /* border-radius: 50%; */
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+}
+.directors .card .content .image{
+    /* width: 200px;
+    height: 200px; */
+    /* border-radius: 50%; */
+    text-align: center;
+}
+.directors .card .content .details ul{
+    list-style-type: none;
+    display: inline;
+}
+.directors .card .content .details ul li{
+    display: inline;
+    padding: 5px;
+}
+.directors .card .content .details h2{
+    font-size: 1.5em;
+    color: #fff;
+}
+/* .directors .card .layer .btn{
+    font-size: 1.5em;
+    color: #fff;
+    border: 2px solid #fff;
+    text-decoration: none;
+    transition: 0.5s;
+    border-radius: 20px;
+    padding: 5px 20px;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);
+    display: none;
+}
+.directors .card .layer .btn:hover{
+    background: #fff;
+    color: #262626;
+} */
+.directors .card .content .details h2 span{
+    display: inline-block;
+    padding: 5px 20px;
+    color: #fff;
+}
+.directors .card:hover .content .details h2 span{
+    color:#fff;
+}
+.directors .card:hover .content .details a{
+    display: inline-block;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 1s;
+}

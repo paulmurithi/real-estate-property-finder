@@ -7,6 +7,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import './app.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import NavigationBar from './components/Navigation/NavigationBar';
+import Sidebar from './components/Navigation/Sidebar';
 import Routes from './components/Navigation/Routes';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 import Footer from './components/Footer/Footer';
@@ -33,6 +34,7 @@ class App extends Component {
         <Router>
           <ScrollTop>
             <NavigationBar />
+            <Sidebar/>
             <Routes />
             <Alerts />
             <Footer />

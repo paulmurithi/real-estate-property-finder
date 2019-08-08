@@ -1,0 +1,17 @@
+table{
+    /* align-content: center; */
+}
+table tr{
+    border-bottom: 2px solid #00b7ff;
+    /* padding-right:  5px; */
+}
+table tr:last-child{
+    border:none;
+}
+table th{
+    color: #00b7ff;
+    text-align: center;
+}
+table tr td{
+    padding-left: 20px;
+}

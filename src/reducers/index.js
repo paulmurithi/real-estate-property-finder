@@ -6,6 +6,7 @@ import Rooms from './Rooms';
 import Agents from './Agents';
 import Houses from './Houses';
 import Lands from './Lands';
+import RoomAdded from './RoomAdded';
 export default combineReducers( {
     auth: Auth,
     errors: Errors,
@@ -13,5 +14,6 @@ export default combineReducers( {
     rooms: Rooms,
     agents: Agents,
     houses: Houses,
-    Lands: Lands
+    Lands: Lands,
+    RoomAdded: RoomAdded
 } );

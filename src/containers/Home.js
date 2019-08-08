@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,19 +11,23 @@ import Banner from '../components/Banner';
 
 class Home extends Component {
     static propTypes = {
-
-    }
+        isAuthenticated: PropTypes.bool
+    };
     componentDidMount () {
     }
     render () {
-        var { isLoading } = this.props.auth;
+        var { isLoading, isAuthenticated } = this.props.auth;
         if ( !isLoading ) {
             return (
                 <div>
                     <Hero hero="defaultHero">
                         <Banner title="Search for property all across Kenya." subtitle="Getting real estate made easy. Search forhotel rooms, houses and land." >
-                            <Link to="/signup" className="btn btn-primary mr-5">Signup</Link>
-                            <Link to="/login" className="btn btn-primary">Login</Link>
+                            {isAuthenticated?null:(
+                                <Fragment>
+                                <Link to="/signup" className="btn btn-primary mr-5">Signup</Link>
+                                <Link to="/login" className="btn btn-primary">Login</Link>
+                                </Fragment>
+                            )}
                         </Banner>
                     </Hero>
                     <Services />
@@ -44,7 +48,4 @@ const mapStateToProps = state => ( {
     auth: state.auth
 } )
 
-const mapDispatchToProps = state => {
-
-}
-export default connect( mapStateToProps, mapDispatchToProps )( Home );
+export default connect( mapStateToProps, null )( Home );

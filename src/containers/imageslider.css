@@ -1,0 +1,14 @@
+.gallery{
+    position: relative;
+    width: 70%;
+}
+.carousel .carousel-inner .carousel-item{
+    height: 60vh;
+}
+.aside{
+    position: absolute;
+    top:70px;
+    right: 0px;
+    width: 30%;
+    padding:10px;
+}

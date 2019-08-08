@@ -18,22 +18,27 @@ class HouseForm extends Component {
         super( props );
         this.state = {
             step: 1,
-            property_type: "",
-            hotel: '',
-            shower: false,
-            sale_type: "",
-            agent: null,
-            size: null,
-            town: null,
-            location: null,
-            room_no: null,
-            type: null,
-            plot_no: null,
-            bedrooms: null,
-            sitting_rooms: null,
-            // showers: null,
-            cctv: false,
-            images: null
+            house_no:null,
+            fitted_with_cctv:false,
+            sale_type:null,
+            property_type:null,
+            verified:false,
+            for_sale:false,
+            for_rent:false,
+            commercial:false,
+            price:null,
+            agent:null,
+            lodge:null,
+            size:null,
+            town:null,
+            suburb:null,
+            room_no:null,
+            plot_no:null,
+            bedrooms:null,
+            sitting_rooms:0,
+            showers:null,
+            shower:false,
+            room_type:null,
 
         }
         this.handleSubmit = this.handleSubmit.bind( this );
@@ -99,88 +104,76 @@ class HouseForm extends Component {
     }
 
     handleChange ( e ) {
-        this.setState( {
-            [ e.target.name ]: e.target.value
-        } );
+        if (e.target.name==="sale_type" && e.target.value==="for_rent"){
+            this.setState( {
+                for_rent: true
+            } );
+        }else if(e.target.name==="sale_type" && e.target.value==="for_sale"){
+            this.setState( {
+                for_sale: true
+            } );
+        } else{
+            this.setState( {
+                [e.target.name]: e.target.value
+            } );
+        }
         console.log( this.state );
     }
-    handleSubmit ( e ) {
-        e.preventDefault();
+    handleSubmit ( ) {
+        // e.preventDefault();
+        const {sale_type} = this.state;
         const {
-            sale_type,
+            house_no,
+            fitted_with_cctv,
+            // sale_type,
             property_type,
+            verified,
+            for_sale,
+            for_rent,
+            commercial,
+            price,
             agent,
-            hotel,
+            lodge,
             size,
             town,
             suburb,
             room_no,
-            type,
             plot_no,
             bedrooms,
             sitting_rooms,
             showers,
-            cctv,
-            images } = this.state;
+            shower,
+            room_type,
+
+        } = this.state;
+        console.log(property_type);
 
         switch ( property_type ) {
             case "land":
-                this.props.addLand(
-                    agent,
-                    size,
-                    town,
-                    hotel,
-                    suburb,
-                    room_no,
-                    type,
-                    plot_no,
-                    bedrooms,
-                    sitting_rooms,
-                    showers,
-                    cctv,
-                    images );
+                console.log("land reached");
+                this.props.addLand({plot_no,size,agent,verified,for_sale,for_rent,commercial,town,suburb,price});
+                break;
             case "room":
-                const {images} = this.state;
-                const fd = new FormData();
-                images.forEach((file, i) => {
-                    fd.append(i, file)
-                    });
-                fd.append("image",this.state.images, this.state.images.name);
-                this.props.addRoom( sale_type,
-                    agent,
-                    size,
-                    hotel,
-                    town,
-                    suburb,
-                    room_no,
-                    type,
-                    plot_no,
-                    bedrooms,
-                    sitting_rooms,
-                    showers,
-                    cctv,
-                    images );
+                    console.log("room reached");
+                // const {images} = this.state;
+                // const fd = new FormData();
+                // images.forEach((file, i) => {
+                //     fd.append(i, file)
+                //     });
+                // fd.append("image",this.state.images, this.state.images.name);
+                this.props.addRoom( {lodge,room_no, agent, room_type, shower, town, suburb, price});
+                break;
             case "house":
-                this.props.addHouse( {
-                    sale_type,
-                    agent,
-                    hotel,
-                    town,
-                    suburb,
-                    room_no,
-                    type,
-                    plot_no,
-                    bedrooms,
-                    sitting_rooms,
-                    showers,
-                    cctv,
-                    images
-                } );
+                    console.log("house reached");
+                this.props.addHouse( {house_no,bedrooms,sitting_rooms,showers,fitted_with_cctv, agent,verified,for_sale,for_rent,commercial,town,suburb,price});
+                break;
             default:
+                break;
         }
     }
     render () {
         const { step, property_type } = this.state;
+        const values = this.state;
         switch ( step ) {
             case 1:
                 return (
@@ -192,7 +185,7 @@ class HouseForm extends Component {
                 );
             case 3:
                 return (
-                    <PropertyDetails onChange={ this.handleChange } propertyType={ property_type } nextStep={ this.nextStep } prevStep={ this.prevStep } onSubmit={ this.handleSubmit } />
+                    <PropertyDetails values={values} onChange={ this.handleChange } propertyType={ property_type } nextStep={ this.nextStep } prevStep={ this.prevStep } onSubmit={ this.handleSubmit } />
                 );
             case 4:
                 return <PropertyImages onChange={ this.handleFileSelect } prevStep={ this.prevStep } onSubmit={ this.onSubmit } />;

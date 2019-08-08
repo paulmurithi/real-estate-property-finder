@@ -1,4 +1,4 @@
-import { GET_ROOMS, ADD_ROOM } from '../actions/ActionTypes';
+import { GET_ROOMS, ADD_ROOM, EDIT_ROOM, DELETE_ROOM } from '../actions/ActionTypes';
 
 const initialState = {
     rooms: [],

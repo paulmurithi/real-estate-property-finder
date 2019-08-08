@@ -18,7 +18,7 @@ html,body{
   background-attachment: fixed; */
 }
 .container-fluid{
-  min-height: 100%;
+  min-height: 80%;
 }
 .main{
   /*overflow: auto;*/
@@ -34,7 +34,6 @@ html,body{
   background-color:  	rgba(0,0,0,0.9);
   position: relative;
   height: auto;
-  /*margin-top: -232px;*/
   clear: both;
   color: #fffceb;
 }

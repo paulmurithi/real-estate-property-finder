@@ -54,4 +54,4 @@ const mapStateToProps = state => ( {
 // const mapDispatchToProps = state => {
 
 // }
-export default connect( mapStateToProps, { getAgents } )( Agents );
+export default connect( mapStateToProps, { getAgents} )( Agents );

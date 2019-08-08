@@ -1,4 +1,5 @@
-// import axios from 'axios';
+import axios from 'axios';
+import { returnErrors } from "./Messages";
 import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from './ActionTypes';
 import { createMessage } from './Messages';
 
@@ -127,8 +128,6 @@ import { createMessage } from './Messages';
 //     return config;
 // }
 
-import axios from "axios";
-import { returnErrors } from "./Messages";
 
 // import {
 //   USER_LOADED,
@@ -191,13 +190,14 @@ export const login = ({username, password}) => dispatch => {
 };
 
 // REGISTER USER
-export const registerUser = ( { username, email, password } ) => dispatch => {
+export const registerUser = ( { username, email, password} ) => dispatch => {
 
       const config = {
           headers: { 'Content-Type': 'application/json' }
       }
       // request body
       const body = JSON.stringify( { username, email, password } );
+      console.log(body);
   
       axios.post( 'http://127.0.0.1:8000/api/auth/register/', body, config )
           .then( res => {

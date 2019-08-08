@@ -10,6 +10,9 @@ class PropertyDetails extends Component {
     }
     constructor(props){
         super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.continue = this.continue.bind(this);
+        this.back = this.back.bind(this);
     }
     componentDidMount () {
         store.dispatch( getAgents() );
@@ -19,6 +22,13 @@ class PropertyDetails extends Component {
         e.preventDefault();
         this.props.nextStep();
     }
+    handleSubmit(e){
+        e.preventDefault();
+        this.props.onSubmit();
+        // if(this.props.messages.addRoom||this.props.messages.addHouse||this.props.messages.addLand){
+        //     this.continue();
+        // }
+    }
 
     back = ( e ) => {
         e.preventDefault();
@@ -27,8 +37,35 @@ class PropertyDetails extends Component {
 
     render () {
         const { propertyType } = this.props;
-        const { agents, count, next, prev } = this.props.agents;
-        console.log("property details",agents)
+        const { agents} = this.props.agents;
+        const { addRoom} = this.props.messages;
+        const { addLand} = this.props.messages;
+        const { addHouse} = this.props.messages;
+        const {
+            house_no,
+            fitted_with_cctv,
+            // sale_type,
+            property_type,
+            verified,
+            for_sale,
+            for_rent,
+            commercial,
+            price,
+            agent,
+            lodge,
+            size,
+            town,
+            suburb,
+            room_no,
+            plot_no,
+            bedrooms,
+            sitting_rooms,
+            showers,
+            shower,
+            room_type,
+
+        } = this.props.values;
+        console.log("values", this.props.values);
 
         switch ( propertyType ) {
             case "land":
@@ -39,11 +76,16 @@ class PropertyDetails extends Component {
                             <div class="form-group">
                                 <label htmlFor="plot_no">
                                     Plot number</label>
-                                <input type="text" className="form-control" name="plot_no" id="plot_no" onChange={ this.props.onChange } />
+                                <input type="text" value = {plot_no} className="form-control" name="plot_no" id="plot_no" onChange={ this.props.onChange } />
                             </div>
+                                <label htmlFor="commercial">
+                                <input type="radio"  name="commercial" id="commercial" onChange={ this.props.onChange } value={commercial?commercial:true}/>
+                                    Commercial
+                                </label>
                             <div class="form-group">
                                 <label htmlFor="agent">Agent:</label>
-                                <select class="custom-select mr-sm-2" id="agent" name="agent" aria-describedby="agentHelpBlock" onChange={ this.props.onChange }>
+                                <select class="custom-select mr-sm-2" id="agent" name="agent" value = {agent} aria-describedby="agentHelpBlock" onChange={ this.props.onChange }>
+                                <option value="">----------------------</option>
                                     { agents.map(
                                     agent => (
                                         <option value={ agent.name }>{ agent.name }</option>
@@ -58,7 +100,7 @@ class PropertyDetails extends Component {
                                 <label htmlFor="size">
                                     Size:
                         </label>
-                                <input type="number" min="0" class="form-control" name="size" id="size" onChange={ this.props.onChange } />
+                                <input type="number" value = {size} min="0" class="form-control" name="size" id="size" onChange={ this.props.onChange } />
                                 <small id="agentHelpBlock" className="form-text text-muted">
                                     Enter the size in hectares i.e 0.75.
                         </small>
@@ -67,16 +109,24 @@ class PropertyDetails extends Component {
                                 <label htmlFor="town">
                                     Town:
                         </label>
-                                <input type="text" className="form-control" name="town" id="town" onChange={ this.props.onChange } />
+                                <input type="text" className="form-control" name="town" id="town" value = {town} onChange={ this.props.onChange } />
                             </div>
                             <div class="form-group">
-                                <label htmlFor="location">
-                                    Location:
+                                <label htmlFor="suburb">
+                                    Suburb:
                         </label>
-                                <input type="text" className="form-control" name="location" id="location" onChange={ this.props.onChange } />
+                                <input type="text" className="form-control" name="suburb" id="suburb" value = {suburb} onChange={ this.props.onChange } />
+                            </div>
+                            <div class="form-group">
+                                <label htmlFor="price">
+                                    price:
+                        </label>
+                                <input type="text" className="form-control" name="price" id="price" value = {price} onChange={ this.props.onChange } />
                             </div>
                             <button className="btn btn-primary" onClick={ this.back }>Previous</button>
-                            <button className="btn btn-primary" onClick={ this.continue }>Next</button>
+                            {addLand?(<button class="btn btn-primary" type="submit" onClick={ this.continue }>Next</button>):
+                            (<button class="btn btn-primary" type="submit" onClick={ this.handleSubmit }>Submit</button>)
+                            }
                         </form >
                     </Fragment>
                 );
@@ -86,13 +136,14 @@ class PropertyDetails extends Component {
                         <h1>Add house</h1>
                         <form>
                             <div class="form-group">
-                                <label htmlFor="plot_no">
+                                <label htmlFor="house_no">
                                     Plot number</label>
-                                <input type="text" class="form-control" name="plot_no" id="plot_no" onChange={ this.props.onChange } />
+                                <input type="text" class="form-control" name="house_no" id="house_no" onChange={ this.props.onChange } />
                             </div>
                             <div class="form-group">
                                 <label htmlFor="agent">Agent:</label>
                                 <select class="custom-select mr-sm-2" id="agent" name="agent" aria-describedby="agentHelpBlock" onChange={ this.props.onChange }>
+                                    <option value="">----------------------</option>
                                     { agents.map(
                                         agent => (
                                             <option value={ agent.name }>{ agent.name }</option>
@@ -128,8 +179,28 @@ class PropertyDetails extends Component {
                                     <option value={ true }>Yes</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label htmlFor="price">
+                                    price:
+                        </label>
+                                <input type="text" className="form-control" name="price" id="price" onChange={ this.props.onChange } />
+                            </div>
+                            <div class="form-group">
+                                <label htmlFor="town">
+                                    Town:
+                        </label>
+                                <input type="text" className="form-control" name="town" id="town" value = {town} onChange={ this.props.onChange } />
+                            </div>
+                            <div class="form-group">
+                                <label htmlFor="suburb">
+                                    Suburb:
+                        </label>
+                                <input type="text" className="form-control" name="suburb" id="suburb" value = {suburb} onChange={ this.props.onChange } />
+                            </div>
                             <button class="btn btn-primary" onClick={ this.back }>Previous</button>
-                            <button class="btn btn-primary" onClick={ this.continue }>Next</button>
+                            {addHouse?(<button class="btn btn-primary" type="submit" onClick={ this.continue }>Next</button>):
+                            (<button class="btn btn-primary" type="submit" onClick={ this.handleSubmit }>Submit</button>)
+                            }
                         </form >
                     </Fragment>
                 );
@@ -139,9 +210,9 @@ class PropertyDetails extends Component {
                         <h1>Add room</h1>
                         <form onSubmit={ this.props.onSubmit }>
                             <div class="form-group">
-                                <label htmlFor="hotel">
+                                <label htmlFor="lodge">
                                     Hotel</label>
-                                <input type="text" className="form-control" name="hotel" id="hotel" onChange={ this.props.onChange } />
+                                <input type="text" className="form-control" name="lodge" id="lodge" onChange={ this.props.onChange } />
                             </div>
                             <div class="form-group">
                                 <label htmlFor="room_no">
@@ -151,6 +222,7 @@ class PropertyDetails extends Component {
                             <div class="form-group">
                                 <label htmlFor="agent">Agent:</label>
                                 <select class="custom-select mr-sm-2" id="agent" name="agent" aria-describedby="agentHelpBlock" onChange={ this.props.onChange }>
+                                <option value="">----------------------</option>
                                 { agents.map(
                                     agent => (
                                         <option value={ agent.name }>{ agent.name }</option>
@@ -162,8 +234,9 @@ class PropertyDetails extends Component {
                         </small>
                             </div>
                             <div class="form-group">
-                                <label htmlFor="type">Type:</label>
-                                <select className="custom-select mr-sm-2" name="type" id="type" onChange={ this.props.onChange }>
+                                <label htmlFor="room_type">Type:</label>
+                                <select className="custom-select mr-sm-2" name="room_type" id="room_type" onChange={ this.props.onChange }>
+                                    <option value="">----------------------</option>
                                     <option value="Single">Single</option>
                                     <option value="Double">Double</option>
                                 </select>
@@ -171,6 +244,7 @@ class PropertyDetails extends Component {
                             <div class="form-group">
                                 <label htmlFor="shower">Shower:</label>
                                 <select className="custom-select mr-sm-2" name="shower" id="shower" onChange={ this.props.onChange }>
+                                    <option value={null}>----------------------</option>
                                     <option value={ true }>Yes</option>
                                     <option value={ false }>No</option>
                                 </select>
@@ -187,8 +261,17 @@ class PropertyDetails extends Component {
                                 </label>
                                 <input type="text" className="form-control" name="suburb" id="suburb" onChange={ this.props.onChange } />
                             </div>
+                            <div class="form-group">
+                                <label htmlFor="price">
+                                    price:
+                        </label>
+                                <input type="text" className="form-control" name="price" id="price" onChange={ this.props.onChange } />
+                            </div>
                             <button class="btn btn-primary" onClick={ this.back }>Previous</button>
-                            <button class="btn btn-primary" type="submit" onClick={ this.continue }>Next</button>
+                            {addRoom?(<button class="btn btn-primary" type="submit" onClick={ this.continue }>Next</button>):
+                            (<button class="btn btn-primary" type="submit" onClick={ this.handleSubmit }>Submit</button>)
+                            }
+                            
                         </form >
                     </Fragment>
                 );
@@ -199,7 +282,8 @@ class PropertyDetails extends Component {
     }
 }
 const mapStateToProps = state => ( {
-    agents: state.agents
+    agents: state.agents,
+    messages:state.messages
 } )
 
 export default connect( mapStateToProps, { getAgents } )( PropertyDetails );

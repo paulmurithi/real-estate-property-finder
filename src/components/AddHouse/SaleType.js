@@ -15,14 +15,14 @@ export default class SaleType extends Component {
             <Fragment>
                 <h1>For</h1>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sale_type" id="rent" value="rent" onChange={ this.props.onChange } />
-                    <label class="form-check-label" htmlFor="rent">
+                    <input class="form-check-input" type="radio" name="sale_type" id="for_rent" value="for_rent" onChange={ this.props.onChange } />
+                    <label class="form-check-label" htmlFor="for_rent">
                         Rent
                  </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sale_type" id="sale" value="sale" onChange={ this.props.onChange } />
-                    <label class="form-check-label" htmlFor="sale">
+                    <input class="form-check-input" type="radio" name="sale_type" id="for_sale" value="for_sale" onChange={ this.props.onChange } />
+                    <label class="form-check-label" htmlFor="for_sale">
                         Sale
                 </label>
                 </div>

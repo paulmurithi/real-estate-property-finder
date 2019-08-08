@@ -31,3 +31,7 @@ export const GET_HOUSES = 'GET_HOUSES';
 export const ADD_HOUSE = 'ADD_HOUSE';
 export const DELETE_HOUSE = 'DELETE_HOUSE';
 export const EDIT_HOUSE = 'DELETE_LAND';
+
+export const ROOM_ADDED = 'ROOM_ADDED';
+export const LAND_ADDED = 'LAND_ADDED';
+export const HOUSE_ADDED = 'HOUSE_ADDED';

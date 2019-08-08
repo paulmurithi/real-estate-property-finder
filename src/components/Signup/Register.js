@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import store from '../../store/store';
-import { GET_ERRORS } from '../../actions/ActionTypes';
-
+import { createMessage } from "../../actions/Messages";
 // connect to redux
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/auth';
@@ -16,7 +15,8 @@ class Register extends Component {
             username: '',
             email: '',
             password: '',
-            password1: ''
+            password1: '',
+            // groups:["customers",]
         }
         this.handleChange = this.handleChange.bind( this );
         this.handleSubmit = this.handleSubmit.bind( this );
@@ -31,10 +31,7 @@ class Register extends Component {
         e.preventDefault();
         const { username, email, password, password1 } = this.state;
         if ( password !== password1 ) {
-            // store.dispatch( {
-            //     type: GET_ERRORS,
-            //     payload: "passwords do not match"
-            // } );
+            this.props.createMessage({ passwordNotMatch: "the Passwords do not match" });
         } else {
             const newUser = ( { username, email, password } );
             this.props.registerUser( newUser );
@@ -123,4 +120,4 @@ class Register extends Component {
 const mapStateToProps = ( state ) => ( {
     isAuthenticated: state.auth.isAuthenticated
 } )
-export default connect( mapStateToProps, { registerUser } )( Register )
+export default connect( mapStateToProps, { registerUser, createMessage } )( Register )

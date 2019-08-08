@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -30,17 +30,19 @@ class App extends Component {
 
   render () {
     return (
-      <div className="container-fluid">
+      <Fragment>
         <Router>
-          <ScrollTop>
-            <NavigationBar />
-            <Sidebar/>
-            <Routes />
-            <Alerts />
-            <Footer />
-          </ScrollTop>
+        <div className="container-fluid">
+            <ScrollTop>
+              <NavigationBar />
+              {/* <Sidebar/> */}
+              <Routes />
+              <Alerts />
+            </ScrollTop>
+        </div>
+        <Footer />
         </Router>
-      </div>
+      </Fragment>
     );
   }
 }

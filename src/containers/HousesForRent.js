@@ -30,7 +30,6 @@ class HousesForRent extends Component {
     }
 
     render () {
-        console.log("props in container",this.props);
         const { houses, count, next, prev } = this.props.houses;
         const isForSale =(house)=>house.for_rent===true && house.commercial===false;
         const HousesForRent = houses.filter(isForSale);

@@ -18,10 +18,11 @@ export const getLands = () => dispatch => {
         } );
 }
 
-export const addLand = ( land ) => ( dispatch, getState ) => {
-    axios.post( 'http://localhost:8000/apilands/', land, tokenConfig( getState ) )
+export const addLand = ( {plot_no,size,agent,verified,for_sale,for_rent,commercial,town,suburb,price} ) => ( dispatch, getState ) => {
+    const body = JSON.stringify({plot_no,size,agent,verified,for_sale,for_rent,commercial,town,suburb,price});
+    axios.post( 'http://localhost:8000/api/lands/', body, tokenConfig( getState )  )
         .then( res => {
-            dispatch( createMessage( { addLand: "Land added successfully" } ) )
+            dispatch( createMessage( { addLand: "Land added successfully", data:res.data } ) )
             dispatch( {
                 type: ADD_LAND,
                 payload: res.data
@@ -34,9 +35,9 @@ export const addLand = ( land ) => ( dispatch, getState ) => {
 }
 
 export const deleteLand = ( id ) => ( dispatch, getState ) => {
-    axios.delete( `http://localhost:8000/apilands/${ id }/`, tokenConfig( getState ) )
+    axios.delete( `http://localhost:8000/api/lands/${ id }/`, tokenConfig( getState ) )
         .then( res => {
-            dispatch( createMessage( { deleteLand: "Land removed successfully" } ) )
+            dispatch( createMessage( { deleteLand: "Land deleted successfully" } ) )
             dispatch( {
                 type: DELETE_LAND,
                 payload: res.data
@@ -48,8 +49,9 @@ export const deleteLand = ( id ) => ( dispatch, getState ) => {
         } );
 }
 
-export const editLand = ( id ) => ( dispatch, getState ) => {
-    axios.put( `http://localhost:8000/apilands/${ id }/`, tokenConfig( getState ) )
+export const editLand = ( {id,plot_no,size,agent,verified,for_sale,for_rent,commercial,town,suburb,price} ) => ( dispatch, getState ) => {
+    const body = JSON.stringify({id,plot_no,size,agent,verified,for_sale,for_rent,commercial,town,suburb,price});
+    axios.put( `http://127.0.0.1:8000/api/lands/${ id }/`, body, tokenConfig( getState ) )
         .then( res => {
             dispatch( createMessage( { editLand: "Land details edited successfully" } ) )
             dispatch( {

@@ -13,7 +13,6 @@ export default class Land extends Component {
                     <h5 className="card-title">{size}ha land</h5>
                     <h6><FontAwesomeIcon icon = {["fas","map-marker-alt"]} className="locator"/> {town} {suburb}</h6>
                     <p className="card-text">ksh {price}</p>
-                    <p>{agent} {agent} {verified?"Verified":""}</p>
                 </div>
                 <div className="card-overlay">
                     <Link to={`${this.props.Match}/${id}`} className="btn btn-success">Features</Link>

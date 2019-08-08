@@ -69,9 +69,25 @@ export class Alerts extends Component {
         if ( error.msg.password )  alert.error( `password: ${ error.msg.password }` );
         if ( error.msg.non_field_errors ) alert.error( error.msg.non_field_errors.join() );
         if (error.msg.msg) alert.error(`message: ${error.msg.msg.join()}`);
+
+        // land errors
+        if ( error.msg.plot_no )  alert.error( `plot number: ${ error.msg.plot_no }` );
+        if ( error.msg.room_no )  alert.error( `room number: ${ error.msg.room_no }` );
+        if ( error.msg.size )  alert.error( `size: ${ error.msg.size }` );
+        if ( error.msg.town )  alert.error( `town: ${ error.msg.town }` );
+        if ( error.msg.suburb )  alert.error( `suburb: ${ error.msg.suburb }` );
+        if ( error.msg.agent )  alert.error( `agent: ${ error.msg.agent }` );
+        if ( error.msg.price )  alert.error( `price: ${ error.msg.price }` );
+        if ( error.msg.room_type )  alert.error( `room type: ${ error.msg.room_type }` );
+        if ( error.msg.shower )  alert.error( `shower: ${ error.msg.shower }` );
+        if ( error.msg.showers )  alert.error( `showers: ${ error.msg.showers }` );
+        if ( error.msg.bedrooms )  alert.error( `bedrooms: ${ error.msg.bedrooms }` );
+        if ( error.msg.sitting_rooms )  alert.error( `sitting rooms: ${ error.msg.sitting_rooms }` );
         }
 
         if (message !== prevProps.message) {
+            if ( message.passwordNotMatch )  alert.error( `${ message.passwordNotMatch }` );
+
             if (message.acountCreated) alert.success(message.acountCreated);
             if (message.deleteLand) alert.success(message.deleteLand);
             if (message.editLand) alert.success(message.editLand);

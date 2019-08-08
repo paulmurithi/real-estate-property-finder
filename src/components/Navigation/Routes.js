@@ -29,28 +29,28 @@ export default class Routes extends Component {
                 <Route exact path="/signup" component={ Register } />
 
                 <Route exact path="/commercial_houses" component={ CommercialHouses } />
-                <Route exact path="/commercial_houses/:slug" component={SingleHouse} />
+                <Route exact path="/commercial_houses/:id" component={SingleHouse} />
 
                 <Route exact path="/commercial_lands" component={ CommercialLand } />
-                <Route exact path="/commercial_lands/:slug" component={SingleLand} />
+                <Route exact path="/commercial_lands/:id" component={SingleLand} />
 
                 <Route exact path="/lease_house" component={ HousesForRent } />
-                <Route exact path="/lease_house/:slug" component={SingleHouse} />
+                <Route exact path="/lease_house/:id" component={SingleHouse} />
 
                 <Route exact path="/buy_house" component={ HousesForSale } />
-                <Route exact path="/buy_house/:slug" component={SingleHouse} />
+                <Route exact path="/buy_house/:id" component={SingleHouse} />
 
                 <Route exact path="/lease_land" component={ LandForRent } />
-                <Route exact path="/lease_land/:slug" component={SingleLand} />
+                <Route exact path="/lease_land/:id" component={SingleLand} />
 
                 <Route exact path="/buy_land" component={ LandForSale } />
-                <Route exact path="/buy_land/:slug" component={SingleLand} />
+                <Route exact path="/buy_land/:id" component={SingleLand} />
 
                 <Route exact path="/rooms" component={ Rooms } />
                 <Route exact path="/rooms/:id" component={SingleRoom} />
 
                 <Route exact path="/agents" component={ Agents } />
-                <Route exact path="/agents/:slug" component={SingleAgent} />
+                <Route exact path="/agents/:id" component={SingleAgent} />
 
                 <PrivateRoute exact path="/request_property" component={ RequestProperty } />
                 <PrivateRoute exact path="/list_property" component={ ListProperty } />
